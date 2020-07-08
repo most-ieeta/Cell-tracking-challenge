@@ -17,19 +17,50 @@ We processed the following 2D datasets available at the [Cell Tracking Challenge
 
 Each dataset has two sequences of images and ground truth, gold truth and silver truth data annotations are available depending on the dataset. We extracted the contours of the moving nuclei and cells from the datasets and created the WKT (well-Known Text Representations) of such moving objects. Then, use merged the WKT representations of each moving object in a single file, using the format accepted by [SPT Data Lab](https://github.com/most-ieeta/SPT-DataLab) to create the moving regions representations for in-between observations.
 
-We also created SQL files that may be used to load the cells' representations into PostgreSQL and that uses PostGIS object datatype to represent the whole-cells / nucleus contours.
+We also created SQL files that may be used to load the cells' representations into PostgreSQL and that uses PostGIS's geometry datatype to represent the whole-cells / nucleus contours.
 
 In this repository, we make available the SQL scripts and WKT representations of such moving objects, and also the scripts used to generate such representations.
 
 ## How we built the SQL and WKT representations
 
+We developed a tool called [cell_extraction](https://github.com/most-ieeta/preprocessing_extraction) to extract the objects of interest from the dataset. Such tool extracts all the objects contours from an image and store each of them at a WKT file. 
+
+Then, we used the *extract_and_merge* script (available in the *BAT Scripts*) folder to run [cell_extraction](https://github.com/most-ieeta/preprocessing_extraction) to all the images that are in subfolders of the *GT* and *ST* folders of the considered datasets and to generate the WKT files and SQL scripts made available at this repository.
+
+The execution of the *extract_and_merge* to each dataset/GT-ST data series generates thousands of files, organized as in the following: 
+
+- To each dataset:
+   - to each ST/GT data series
+     - A folder (called *segmented* in the files we make in the available) that contains a file with the WKT representation of each segmented region/frame; 
+     - A folder (called *merged* in the files we make in the available) that contains a file for each cell - each file contaning the WKT representations of the cell for several timestamps (as used in SPT Data Lab); 
+   - the SQL scripts to load the WKT representations into PostGIS.     
 
 
 ## How to use the SQL files
 
+The [CreateTables file](https://github.com/most-ieeta/Cell-tracking-challenge/blob/master/SQL%20scripts/CreateTables.sql) contains the script to create a table for each dataset. Each table contains three fields: *time* (which indicates the time frame), *name* (which contains the series name and the cell identification) and *object* (which is the object geometry).
 
+The series names contain the information of the original folder of the image. Some examples are *01-ST-SEG*, *02-GT-TRA* and *01-GT-SEG*. 
+
+If you and to query for all the objects of the 01-ST-SEG series in the Fluo-N2DL-HeLa dataset and time 98, than you may use the following query:
+
+```
+select name, object from FluoN2DLHeLa  
+where TIME = 0 and name like '01-ST-SEG-%'
+```
+
+If you and to query for all representations of cell1 of the ST folder in the Fluo-N2DL-HeLa, then you may run the following query:
+
+```
+select time, object from FluoN2DLHeLa  
+where name like '01-ST-SEG-cell1'
+```
+
+If you want to visualize the image in PGAdmin, you should use the ST_RotateX (with pi() rotation) over the object to get the same axis-orientation than the original image.  
 
 ## How to use the WKT representations in SPT Data Lab
+
+
 
 
 

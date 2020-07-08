@@ -60,10 +60,9 @@ If you want to visualize the image in PGAdmin, you should use the ST_RotateX (wi
 
 ## How to use the WKT representations in SPT Data Lab
 
+[SPT Data Lab](https://github.com/most-ieeta/SPT-DataLab) can run spatiotemporal interpolation methods over pairs of files containing a single WKT each or over a file containing several WKT representations (one for each timestamp).
 
-
-
-
+The WKT files folder of this repository contains several Zip files (one for each dataset). In such files, there are folders name *segmented* and *merged* for each time series (i.e. 01-ST-TRA, 01-ST-SEG, ...).  To use the first option available in [SPT Data Lab](https://github.com/most-ieeta/SPT-DataLab) (i.e. pairs of files), you can use the WKT representations available at the *segmented* folders. To use the second option (i.e. a single file that contains several WKT representations of an object - one for each timestamp), you should use the files in the *merged* folders. 
 
 ## MoST Project
 

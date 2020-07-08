@@ -3,7 +3,19 @@
 
 The [Cell Tracking Challenge](http://celltrackingchallenge.net/) is a regular challenge on whole-cell and nucleus segmentation and tracking. It provides several datasets of video sequences on nuclei or cells moving.
 
-We extracted the contours of the moving nuclei and cells from the 2D datasets available at the [Cell Tracking Challenge website](http://celltrackingchallenge.net/)  and created the WKT (well-Known Text Representations) of such moving objects. Then, use merged the WKT representations of each moving object in a single file, using the format accepted by [SPT Data Lab](https://github.com/most-ieeta/SPT-DataLab) to create the moving regions representations for in-between observations.
+We processed the following 2D datasets available at the [Cell Tracking Challenge website](http://celltrackingchallenge.net/):
+
+- BF-C2DL-HSC
+- BF-C2DL-MuSC
+- DIC-C2DH-HeLa
+- Fluo-C2DL-MSC
+- Fluo-N2DH-GOWT1
+- Fluo-N2DH-SIM+
+- Fluo-N2DL-HeLa
+- PhC-C2DH-U373
+- PhC-C2DL-PSC
+
+Each dataset has two sequences of images and ground truth, gold truth and silver truth data annotations are available depending on the dataset. We extracted the contours of the moving nuclei and cells from the datasets and created the WKT (well-Known Text Representations) of such moving objects. Then, use merged the WKT representations of each moving object in a single file, using the format accepted by [SPT Data Lab](https://github.com/most-ieeta/SPT-DataLab) to create the moving regions representations for in-between observations.
 
 We also created SQL files that may be used to load the cells' representations into PostgreSQL and that uses PostGIS object datatype to represent the whole-cells / nucleus contours.
 

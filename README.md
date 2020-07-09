@@ -15,7 +15,7 @@ We processed the following 2D datasets available at the [Cell Tracking Challenge
 - PhC-C2DH-U373
 - PhC-C2DL-PSC
 
-Each dataset has two sequences of images and ground truth, gold truth and silver truth data annotations are available depending on the dataset. We extracted the contours of the moving nuclei and cells from the datasets and created the WKT (well-Known Text Representations) of such moving objects. Then, use merged the WKT representations of each moving object in a single file, using the format accepted by [SPT Data Lab](https://github.com/most-ieeta/SPT-DataLab) to create the moving regions representations for in-between observations.
+Each dataset has two sequences of images and ground truth, gold truth and silver truth data annotations are available depending on the dataset. We extracted the contours of the moving nuclei and cells from the datasets and created the WKT (well-Known Text Representations) of such moving objects. Then, use merged the WKT representations of each moving object in a single file, using the layout accepted by [SPT Data Lab](https://github.com/most-ieeta/SPT-DataLab) to create the moving regions representations for in-between observations.
 
 We also created SQL files that may be used to load the cells' representations into PostgreSQL and that uses PostGIS's geometry datatype to represent the whole-cells / nucleus contours.
 

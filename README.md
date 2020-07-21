@@ -1,4 +1,4 @@
-# Cell-tracking-challenge
+# Cell tracking challenge datasets x SQL scripts and WKT representations
 
 
 The [Cell Tracking Challenge](http://celltrackingchallenge.net/) is a regular challenge on whole-cell and nucleus segmentation and tracking. It provides several datasets of video sequences on nuclei or cells moving.
